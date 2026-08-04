@@ -12,69 +12,67 @@ router.post('/', (req, res) => {
     return;
   }
 
+  User.findOne({ token: req.body.token })
+    .then((user) => {
+      if (!user) {
+        res.json({ result: false, error: 'User not found' });
+        return;
+      }
+
+      const newAlert = new Alert({
+        requester: user._id,
+        location: {
+          latitude: req.body.latitude,
+          longitude: req.body.longitude,
+        },
+      });
+
+      newAlert.save().then((alert) => {
+        res.json({ result: true, alert });
+      });
+    });
+});
+
+router.get('/:id', (req, res) => {
+  Alert.findById(req.params.id)
+    .then((alert) => {
+      res.json(alert ? { result: true, alert } : { result: false, error: 'Alert not found' });
+    });
+});
+
+router.put('/:alertId/accept', (req, res) => {
+  if (!checkBody(req.body, ['token'])) {
+    res.json({ result: false, error: 'Missing or empty fields' });
+    return;
+  }
   User.findOne({ token: req.body.token }).then((user) => {
     if (!user) {
       res.json({ result: false, error: 'User not found' });
       return;
     }
-
-    const newAlert = new Alert({
-      requester: user._id,
-      location: {
-        latitude: req.body.latitude,
-        longitude: req.body.longitude,
-      },
-    });
-
-    newAlert.save().then((alert) => {
-      res.json({ result: true, alert });
-    });
-  });
-});
-
-router.get('/:id', (req, res) => {
-    Alert.findById(req.params.id).then((alert) => {
-      res.json( alert ? { result: true, alert } : {result: false, error: 'alert not found'});
-  });
-});
-
-
-
-
-router.put("/:alertId/accept", (req, res) => {
-  if(!checkBody(req.body, ['token'])) {
-    res.json({ result: false, error: 'Missing or empty fields' });
-    return;
-  }
-  User.findOne({ token: req.body.token }).then((user) => {
-    if(!user) {
-      res.json({ result: false, error: "User not found" });
-      return;
-    }
     FirstResponder.findOne({ user: user._id }).then((responder) => {
       if (!responder) {
-        res.json({ result: false, error: 'Not a first responder'});
+        res.json({ result: false, error: 'Not a first responder' });
         return;
       }
-  Alert.findById(req.params.alertId).then((alert) => {
-    if (!alert) {
-      res.json({ result: false, error: "Alert not found" });
-      return;
-    }
-    if (alert.status !== 'pending') {
+      Alert.findById(req.params.alertId).then((alert) => {
+        if (!alert) {
+          res.json({ result: false, error: 'Alert not found' });
+          return;
+        }
+        if (alert.status !== 'pending') {
           res.json({ result: false, error: 'Alert already accepted' });
           return;
         }
-        
 
-    const update = {
-      status: 'accepted',
-      firstResponder: responder._id,
-      acceptedAt: new Date(),
-    };
+        const update = {
+          status: 'accepted',
+          firstResponder: responder._id,
+          acceptedAt: new Date(),
+        };
 
-    Alert.updateOne({ _id: req.params.alertId }, update).then(() => {
-      res.json({ result: true });
+        Alert.updateOne({ _id: req.params.alertId }, update).then(() => {
+          res.json({ result: true });
         });
       });
     });
@@ -83,7 +81,7 @@ router.put("/:alertId/accept", (req, res) => {
 
 
 router.put('/:alertId/close', (req, res) => {
-    if(!checkBody(req.body, ['token'])) {
+  if (!checkBody(req.body, ['token'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   }
