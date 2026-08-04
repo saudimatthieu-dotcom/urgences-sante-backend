@@ -1,12 +1,12 @@
+require('../models/connection');
 var express = require('express');
 var router = express.Router();
-
+const { checkBody } = require('../modules/checkBody');
+const User = require('../models/users');
 const HealthRecord = require('../models/healthRecords');
 
-
-
 router.post('/', (req, res) => {
-  if (!checkBody(req.body, ['token'])) {
+  if (!checkBody(req.body, ['token', 'label'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   }
@@ -17,32 +17,32 @@ router.post('/', (req, res) => {
       return;
     }
 
-    // Check if the user has not already been registered as a first responder
-    FirstResponder.findOne({ user: user._id }).then((responder) => {
-      if (responder) {
-        res.json({ result: false, error: 'First responder already exists' });
-        return;
-      }
+    const newHealthRecord = new HealthRecord({
+      user: user._id,
+      label: req.body.label,
+      notes: req.body.notes,
+      occurredAt: req.body.occurredAt,
+      practitioner: req.body.practitioner,
+      hospital: req.body.hospital,
+    });
 
-      const newFirstResponder = new FirstResponder({
-        user: user._id,
-        certifications: req.body.certifications,
-        isPubliclyListed: req.body.isPubliclyListed,
-      });
-
-      newFirstResponder.save().then((firstResponder) => {
-        res.json({ result: true, firstResponder });
-      });
+    newHealthRecord.save().then((healthRecord) => {
+      res.json({ result: true, healthRecord });
     });
   });
 });
 
+router.get('/:token', (req, res) => {
+  User.findOne({ token: req.params.token }).then((user) => {
+    if (!user) {
+      res.json({ result: false, error: 'User not found' });
+      return;
+    }
 
-router.get('/', (req, res) => {
-  FirstResponder.find({  })
-    .then((firstResponders) => {
-      res.json({ result: true, firstResponders });
+    HealthRecord.find({ user: user._id }).then((healthRecords) => {
+      res.json({ result: true, healthRecords });
     });
+  });
 });
 
 
