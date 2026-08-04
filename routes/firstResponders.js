@@ -102,7 +102,19 @@ router.put('/location', (req, res) => {
 
 router.get('/', (req, res) => {
   FirstResponder.find({ isAvailable: true, isPubliclyListed: true })
-    .then((firstResponders) => {
+    .populate('user')
+    .then((responders) => {
+      const firstResponders = responders
+        .filter((responder) => responder.user && responder.location)
+        .map((responder) => ({
+          id: responder._id,
+          name: `${responder.user.firstname} ${responder.user.lastname.charAt(0)}.`,
+          certification: responder.certifications[0]?.certName,
+          phone: responder.user.phone,
+          latitude: responder.location.latitude,
+          longitude: responder.location.longitude,
+        }));
+
       res.json({ result: true, firstResponders });
     });
 });
