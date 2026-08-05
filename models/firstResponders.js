@@ -1,11 +1,9 @@
 const mongoose = require("mongoose");
 
-const locationSchema = mongoose.Schema(
-  {
-    latitude: Number,
-    longitude: Number,
-  },
-);
+const locationSchema = mongoose.Schema({
+  latitude: Number,
+  longitude: Number,
+});
 
 const certificationSchema = mongoose.Schema({
   certName: String,
