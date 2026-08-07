@@ -108,7 +108,7 @@ router.get('/', (req, res) => {
         .filter((responder) => responder.user && responder.location)
         .map((responder) => ({
           id: responder._id,
-          name: `${responder.user.firstname} ${responder.user.lastname.charAt(0)}.`,
+          name: `${responder.user.firstname || ''} ${responder.user.lastname ? `${responder.user.lastname.charAt(0)}.` : ''}`.trim(),
           certification: responder.certifications[0]?.certName,
           phone: responder.user.phone,
           latitude: responder.location.latitude,

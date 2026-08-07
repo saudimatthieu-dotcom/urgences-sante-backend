@@ -2,6 +2,7 @@ require('../models/connection');
 var express = require('express');
 var router = express.Router();
 const { checkBody } = require('../modules/checkBody');
+const checkId = require('../modules/checkId');
 const Alert = require('../models/alerts');
 const User = require('../models/users');
 const FirstResponder = require('../models/firstResponders');
@@ -33,14 +34,14 @@ router.post('/', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
-  Alert.findById(req.params.id)
+router.get('/:alertId', checkId('alertId'), (req, res) => {
+  Alert.findById(req.params.alertId)
     .then((alert) => {
       res.json(alert ? { result: true, alert } : { result: false, error: 'Alert not found' });
     });
 });
 
-router.put('/:alertId/accept', (req, res) => {
+router.put('/:alertId/accept', checkId('alertId'), (req, res) => {
   if (!checkBody(req.body, ['token'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
@@ -80,7 +81,7 @@ router.put('/:alertId/accept', (req, res) => {
 });
 
 
-router.put('/:alertId/close', (req, res) => {
+router.put('/:alertId/close', checkId('alertId'), (req, res) => {
   if (!checkBody(req.body, ['token'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
