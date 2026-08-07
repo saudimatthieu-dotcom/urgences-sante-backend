@@ -23,6 +23,7 @@ router.post("/signup", function (req, res) {
         const newUser = new User({
           email: req.body.email,
           socialSecurityNumber: req.body.socialSecurityNumber,
+          isFirstResponder: req.body.isFirstResponder,
           password: hash,
           token: uid2(32),
         });
@@ -41,16 +42,38 @@ router.post("/signup", function (req, res) {
     });
 });
 
+router.post("/signin", function (req, res) {
+  if (!checkBody(req.body, ["email", "password"])) {
+    res.status(400).json({ result: false, error: "Missing or empty fields" });
+    return;
+  }
 
-router.put('/profile', (req, res) => {
-  if (!checkBody(req.body, ['token'])) {
-    res.status(400).json({ result: false, error: 'Missing or empty fields' });
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if (user && bcrypt.compareSync(req.body.password, user.password)) {
+        res
+          .status(200)
+          .json({ result: true, token: user.token, email: user.email });
+      } else {
+        res
+          .status(401)
+          .json({ result: false, error: "User not found or wrong password" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ result: false, error: error.message });
+    });
+});
+
+router.put("/profile", (req, res) => {
+  if (!checkBody(req.body, ["token"])) {
+    res.json({ result: false, error: "Missing or empty fields" });
     return;
   }
   User.findOne({ token: req.body.token })
     .then((user) => {
       if (!user) {
-        res.json({ result: false, error: 'User not found' });
+        res.json({ result: false, error: "User not found" });
         return;
       }
 
@@ -71,12 +94,11 @@ router.put('/profile', (req, res) => {
     });
 });
 
-
-router.get('/profile/:token', (req, res) => {
+router.get("/profile/:token", (req, res) => {
   User.findOne({ token: req.params.token })
     .then((user) => {
       if (!user) {
-        res.json({ result: false, error: 'User not found' });
+        res.json({ result: false, error: "User not found" });
         return;
       }
 
