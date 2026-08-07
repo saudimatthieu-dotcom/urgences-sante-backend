@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 
 const User = require("../models/users");
-const HealthRecord = require("../models/healthRecords");
 const { checkBody } = require("../modules/checkBody");
 const bcrypt = require("bcrypt");
 const uid2 = require("uid2");
@@ -42,9 +41,10 @@ router.post("/signup", function (req, res) {
     });
 });
 
+
 router.put('/profile', (req, res) => {
   if (!checkBody(req.body, ['token'])) {
-    res.json({ result: false, error: 'Missing or empty fields'});
+    res.status(400).json({ result: false, error: 'Missing or empty fields' });
     return;
   }
   User.findOne({ token: req.body.token })
@@ -72,8 +72,6 @@ router.put('/profile', (req, res) => {
 });
 
 
-
-
 router.get('/profile/:token', (req, res) => {
   User.findOne({ token: req.params.token })
     .then((user) => {
@@ -82,13 +80,23 @@ router.get('/profile/:token', (req, res) => {
         return;
       }
 
-      return HealthRecord.find({ user: user._id }).then((healthRecords) => {
-        res.json({ result: true, healthRecords });
+      res.json({
+        result: true,
+        profile: {
+          firstname: user.firstname,
+          lastname: user.lastname,
+          email: user.email,
+          phone: user.phone,
+          birthdate: user.birthdate,
+          address: user.address,
+          socialSecurityNumber: user.socialSecurityNumber,
+        },
       });
     })
     .catch((error) => {
       res.status(500).json({ result: false, error: error.message });
     });
 });
+
 
 module.exports = router;

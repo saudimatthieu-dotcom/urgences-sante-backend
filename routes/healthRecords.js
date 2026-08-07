@@ -33,16 +33,20 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:token', (req, res) => {
-  User.findOne({ token: req.params.token }).then((user) => {
-    if (!user) {
-      res.json({ result: false, error: 'User not found' });
-      return;
-    }
+  User.findOne({ token: req.params.token })
+    .then((user) => {
+      if (!user) {
+        res.json({ result: false, error: 'User not found' });
+        return;
+      }
 
-    HealthRecord.find({ user: user._id }).then((healthRecords) => {
-      res.json({ result: true, healthRecords });
+      return HealthRecord.find({ user: user._id }).then((healthRecords) => {
+        res.json({ result: true, healthRecords });
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({ result: false, error: error.message });
     });
-  });
 });
 
 
