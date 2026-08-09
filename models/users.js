@@ -11,7 +11,7 @@ const UserSchema = mongoose.Schema({
   firstname: String,
   lastname: String,
   email: { type: String, unique: true, required: true },
-  socialSecurityNumber: { type: String, unique: true },
+  socialSecurityNumber: { type: String, unique: true, sparse: true },
   password: { type: String, required: true },
   token: String,
   phone: String,

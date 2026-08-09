@@ -53,7 +53,11 @@ router.post("/signin", function (req, res) {
       if (user && bcrypt.compareSync(req.body.password, user.password)) {
         res
           .status(200)
-          .json({ result: true, token: user.token, email: user.email });
+          .json({ 
+            result: true,
+            token: user.token,
+            email: user.email,
+            socialSecurityNumber: user.socialSecurityNumber, });
       } else {
         res
           .status(401)
