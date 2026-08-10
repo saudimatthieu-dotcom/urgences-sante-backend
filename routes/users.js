@@ -33,6 +33,7 @@ router.post("/signup", function (req, res) {
             result: true,
             token: savedUser.token,
             email: savedUser.email,
+            socialSecurityNumber: savedUser.socialSecurityNumber,
           });
         });
       });
