@@ -100,6 +100,33 @@ router.put('/location', (req, res) => {
   });
 });
 
+//my own responder profile
+router.get('/me/:token', (req,res) => {
+  User.findOne({ token: req.params.token }).then((user) => {
+    if (!user) {
+      res.json({ result: false, error: 'User not found' });
+      return;
+    }
+    FirstResponder.findOne({ user: user._id }).then((responder) => {
+      if (!responder) {
+        res.json({ result: false, error: 'First responder not found' })
+        return;
+      }
+      
+      res.json({
+        result: true,
+        firstResponder: {
+          id: responder._id,
+          certifications: responder.certifications,
+          isAvailable: responder.isAvailable,
+          isPubliclyListed: responder.isPubliclyListed,
+          location: responder.location,
+        }
+      })
+    })
+  })
+})
+
 router.get('/', (req, res) => {
   FirstResponder.find({ isAvailable: true, isPubliclyListed: true })
     .populate('user')

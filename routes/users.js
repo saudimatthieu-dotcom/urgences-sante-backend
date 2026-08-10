@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 const User = require("../models/users");
+const FirstResponder = require("../models/firstResponders");
 const { checkBody } = require("../modules/checkBody");
 const bcrypt = require("bcrypt");
 const uid2 = require("uid2");
