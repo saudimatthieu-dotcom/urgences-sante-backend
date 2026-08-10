@@ -34,6 +34,46 @@ router.post('/', (req, res) => {
     });
 });
 
+//pending alert should be received by first responder
+router.get('/pending/:token', (req, res) => {
+  User.findOne({ token: req.params.token }).then((user) => {
+    if (!user) {
+      res.json({ result: false, error: 'User not found' });
+      return;
+    }
+    FirstResponder.findOne({ user: user._id }).then((responder) => {
+      if (!responder) {
+        res.json({ result: false, error: 'Not a first responder' });
+        return;
+      }
+
+      Alert.find({ status: 'pending' })
+        .populate('requester')
+        .sort({ createdAt: -1 })
+        .then((pendingAlerts) => {
+          const alerts = pendingAlerts
+            .filter((alert) => alert.location)
+            .map((alert) => {
+              const requester = alert.requester;
+              const firstname = requester?.firstname || '';
+              const lastname = requester?.lastname ? `${requester.lastname.charAt(0)}.` : '';
+
+              return {
+                id: alert._id,
+                latitude: alert.location.latitude,
+                longitude: alert.location.longitude,
+                createdAt: alert.createdAt,
+                requesterName: `${firstname} ${lastname}`.trim(),
+                requesterPhone: requester?.phone,
+              };
+            });
+
+          res.json({ result: true, alerts });
+        });
+    });
+  });
+});
+
 router.get('/:alertId', checkId('alertId'), (req, res) => {
   Alert.findById(req.params.alertId)
     .then((alert) => {
@@ -86,23 +126,35 @@ router.put('/:alertId/close', checkId('alertId'), (req, res) => {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   }
-  Alert.findById(req.params.alertId).then((alert) => {
-    if (!alert) {
-      res.json({ result: false, error: 'Alert not found' });
+  User.findOne({ token: req.body.token }).then((user) => {
+    if (!user) {
+      res.json({ result: false, error: 'User not found' });
       return;
     }
-    if (alert.status === 'resolved' || alert.status === 'cancelled') {
-      res.json({ result: false, error: 'Alert already closed' });
-      return;
-    }
+    FirstResponder.findOne({ user: user._id }).then((responder) => {
+      if (!responder) {
+        res.json({ result: false, error: 'Not a first responder' });
+        return;
+      }
+      Alert.findById(req.params.alertId).then((alert) => {
+        if (!alert) {
+          res.json({ result: false, error: 'Alert not found' });
+          return;
+        }
+        if (alert.status === 'resolved' || alert.status === 'cancelled') {
+          res.json({ result: false, error: 'Alert already closed' });
+          return;
+        }
 
-    const update = {
-      status: 'resolved',
-      resolvedAt: new Date(),
-    };
+        const update = {
+          status: 'resolved',
+          resolvedAt: new Date(),
+        };
 
-    Alert.updateOne({ _id: req.params.alertId }, update).then(() => {
-      res.json({ result: true });
+        Alert.updateOne({ _id: req.params.alertId }, update).then(() => {
+          res.json({ result: true });
+        });
+      });
     });
   });
 });
