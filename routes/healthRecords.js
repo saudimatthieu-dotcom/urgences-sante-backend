@@ -6,30 +6,34 @@ const User = require('../models/users');
 const HealthRecord = require('../models/healthRecords');
 
 router.post('/', (req, res) => {
-  if (!checkBody(req.body, ['token', 'label'])) {
+  if (!checkBody(req.body, ['token', 'label', 'occurredAt'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   }
 
-  User.findOne({ token: req.body.token }).then((user) => {
-    if (!user) {
-      res.json({ result: false, error: 'User not found' });
-      return;
-    }
+  User.findOne({ token: req.body.token })
+    .then((user) => {
+      if (!user) {
+        res.json({ result: false, error: 'User not found' });
+        return;
+      }
 
-    const newHealthRecord = new HealthRecord({
-      user: user._id,
-      label: req.body.label,
-      notes: req.body.notes,
-      occurredAt: req.body.occurredAt,
-      practitioner: req.body.practitioner,
-      hospital: req.body.hospital,
-    });
+      const newHealthRecord = new HealthRecord({
+        user: user._id,
+        label: req.body.label,
+        notes: req.body.notes,
+        occurredAt: req.body.occurredAt,
+        practitioner: req.body.practitioner,
+        hospital: req.body.hospital,
+      });
 
-    newHealthRecord.save().then((healthRecord) => {
-      res.json({ result: true, healthRecord });
+      return newHealthRecord.save().then((healthRecord) => {
+        res.json({ result: true, healthRecord });
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({ result: false, error: error.message });
     });
-  });
 });
 
 router.get('/:token', (req, res) => {
