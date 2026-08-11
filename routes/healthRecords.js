@@ -40,9 +40,11 @@ router.get('/:token', (req, res) => {
         return;
       }
 
-      return HealthRecord.find({ user: user._id }).then((healthRecords) => {
-        res.json({ result: true, healthRecords });
-      });
+      return HealthRecord.find({ user: user._id })
+        .populate('practitioner')
+        .then((healthRecords) => {
+          res.json({ result: true, healthRecords });
+        });
     })
     .catch((error) => {
       res.status(500).json({ result: false, error: error.message });
