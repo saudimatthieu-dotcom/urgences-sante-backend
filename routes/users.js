@@ -35,6 +35,7 @@ router.post("/signup", function (req, res) {
             token: savedUser.token,
             email: savedUser.email,
             socialSecurityNumber: savedUser.socialSecurityNumber,
+            isFirstResponder: savedUser.isFirstResponder,
           });
         });
       });
@@ -55,11 +56,13 @@ router.post("/signin", function (req, res) {
       if (user && bcrypt.compareSync(req.body.password, user.password)) {
         res
           .status(200)
-          .json({ 
+          .json({
             result: true,
             token: user.token,
             email: user.email,
-            socialSecurityNumber: user.socialSecurityNumber, });
+            socialSecurityNumber: user.socialSecurityNumber,
+            isFirstResponder: user.isFirstResponder,
+          });
       } else {
         res
           .status(401)
