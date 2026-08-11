@@ -1,0 +1,74 @@
+[
+  {
+    "_id": { "$oid": "650000000000000000000001" },
+    "firstname": "Marie",
+    "lastname": "Dubois",
+    "email": "marie.dubois@secouriste.demo",
+    "phone": "0639980112",
+    "password": "demo",
+    "isFirstResponder": true
+  },
+  {
+    "_id": { "$oid": "650000000000000000000002" },
+    "firstname": "Karim",
+    "lastname": "Benali",
+    "email": "karim.benali@secouriste.demo",
+    "phone": "0639980237",
+    "password": "demo",
+    "isFirstResponder": true
+  },
+  {
+    "_id": { "$oid": "650000000000000000000003" },
+    "firstname": "Sophie",
+    "lastname": "Nguyen",
+    "email": "sophie.nguyen@secouriste.demo",
+    "phone": "0639980345",
+    "password": "demo",
+    "isFirstResponder": true
+  },
+  {
+    "_id": { "$oid": "650000000000000000000004" },
+    "firstname": "Thomas",
+    "lastname": "Leroy",
+    "email": "thomas.leroy@secouriste.demo",
+    "phone": "0639980458",
+    "password": "demo",
+    "isFirstResponder": true
+  },
+  {
+    "_id": { "$oid": "650000000000000000000005" },
+    "firstname": "Amina",
+    "lastname": "Kaddour",
+    "email": "amina.kaddour@secouriste.demo",
+    "phone": "0639980561",
+    "password": "demo",
+    "isFirstResponder": true
+  },
+  {
+    "_id": { "$oid": "650000000000000000000006" },
+    "firstname": "Lucas",
+    "lastname": "Martin",
+    "email": "lucas.martin@secouriste.demo",
+    "phone": "0639980674",
+    "password": "demo",
+    "isFirstResponder": true
+  },
+  {
+    "_id": { "$oid": "650000000000000000000007" },
+    "firstname": "Chloé",
+    "lastname": "Roux",
+    "email": "chloe.roux@secouriste.demo",
+    "phone": "0639980783",
+    "password": "demo",
+    "isFirstResponder": true
+  },
+  {
+    "_id": { "$oid": "650000000000000000000008" },
+    "firstname": "Yanis",
+    "lastname": "Traoré",
+    "email": "yanis.traore@secouriste.demo",
+    "phone": "0639980896",
+    "password": "demo",
+    "isFirstResponder": true
+  }
+]
