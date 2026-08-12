@@ -13,11 +13,11 @@ const locationSchema = mongoose.Schema({
 });
 
 const hospitalSchema = mongoose.Schema({
-  name: String,
+  name: { type: String, required: true },
   address: addressSchema,
   phone: String,
-  services: [String],
-  location: locationSchema,
+  specialties: { type: [String], required: true },
+  location: { type: locationSchema, required: true },
 });
 
 const Hospital = mongoose.model("hospitals", hospitalSchema);

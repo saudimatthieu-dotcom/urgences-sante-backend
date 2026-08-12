@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Hôpital Necker - Enfants Malades",
+    "specialties": ["Pédiatrie", "Gastro-entérologie"],
+    "location": { "latitude": 48.8449, "longitude": 2.314 }
+  },
+  {
+    "name": "Hôpital Lariboisière",
+    "specialties": ["Urgences générales", "Pédiatrie"],
+    "location": { "latitude": 48.8823, "longitude": 2.3499 }
+  },
+  {
+    "name": "Hôpital Armand Trousseau",
+    "specialties": ["Pédiatrie spécialisée"],
+    "location": { "latitude": 48.8398, "longitude": 2.4014 }
+  },
+  {
+    "name": "Hôpital Robert Debré",
+    "specialties": ["Pédiatrie", "Urgences pédiatriques"],
+    "location": { "latitude": 48.8785, "longitude": 2.4013 }
+  },
+  {
+    "name": "Hôpital Cochin",
+    "specialties": ["Urgences générales", "Gynécologie"],
+    "location": { "latitude": 48.8365, "longitude": 2.3378 }
+  },
+  {
+    "name": "Hôpital Saint-Louis",
+    "specialties": ["Urgences générales", "Hématologie"],
+    "location": { "latitude": 48.8722, "longitude": 2.3701 }
+  }
+]
