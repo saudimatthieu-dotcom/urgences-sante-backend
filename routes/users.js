@@ -45,7 +45,6 @@ router.post("/signup", function (req, res) {
 
           const newFirstResponder = new FirstResponder({
             user: savedUser._id,
-            isPubliclyListed: true,
           });
 
           return newFirstResponder.save().then(() => {

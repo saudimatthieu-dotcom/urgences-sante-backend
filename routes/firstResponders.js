@@ -97,7 +97,6 @@ router.get('/me/:token', (req, res) => {
             id: responder._id,
             certifications: responder.certifications,
             isAvailable: responder.isAvailable,
-            isPubliclyListed: responder.isPubliclyListed,
             location: responder.location,
           },
         });
@@ -109,7 +108,7 @@ router.get('/me/:token', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  FirstResponder.find({ isAvailable: true, isPubliclyListed: true })
+  FirstResponder.find({ isAvailable: true })
     .populate('user')
     .then((responders) => {
       const firstResponders = responders
