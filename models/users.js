@@ -17,6 +17,7 @@ const UserSchema = mongoose.Schema({
   phone: String,
   address: addressSchema,
   birthdate: Date,
+  photo: String,
   isFirstResponder: { type: Boolean, default: false },
 });
 

@@ -1,11 +1,16 @@
 var express = require("express");
 var router = express.Router();
 
+
 const User = require("../models/users");
 const FirstResponder = require("../models/firstResponders");
 const { checkBody } = require("../modules/checkBody");
 const bcrypt = require("bcrypt");
 const uid2 = require("uid2");
+
+const uniqid = require('uniqid');
+const cloudinary = require('cloudinary').v2;
+const fs = require('fs');
 
 router.post("/signup", function (req, res) {
   if (!checkBody(req.body, ["email", "password"])) {
@@ -134,12 +139,31 @@ router.get("/profile/:token", (req, res) => {
           birthdate: user.birthdate,
           address: user.address,
           socialSecurityNumber: user.socialSecurityNumber,
+          photo: user.photo,
         },
       });
     })
     .catch((error) => {
       res.status(500).json({ result: false, error: error.message });
     });
+});
+
+//Cloudinary route profile photo
+router.post('/profile/upload', async (req, res) => {
+  const photoPath = `./tmp/${uniqid()}.jpg`;
+  const resultMove = await req.files.photoFromFront.mv(photoPath);
+
+  if (!resultMove) {
+    const resultCloudinary = await cloudinary.uploader.upload(photoPath);
+    await User.updateOne(
+      { token: req.body.token },
+      { photo: resultCloudinary.secure_url },
+    );
+    fs.unlinkSync(photoPath);
+    res.json({ result: true, url: resultCloudinary.secure_url });
+  } else {
+    res.json({ result: false, error: resultMove });
+  }
 });
 
 
