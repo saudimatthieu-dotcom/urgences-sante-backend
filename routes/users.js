@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 const User = require("../models/users");
+const FirstResponder = require("../models/firstResponders");
 const { checkBody } = require("../modules/checkBody");
 const bcrypt = require("bcrypt");
 const uid2 = require("uid2");
@@ -29,11 +30,25 @@ router.post("/signup", function (req, res) {
         });
 
         return newUser.save().then((savedUser) => {
-          res.status(201).json({
+          const userData = {
             result: true,
             token: savedUser.token,
             email: savedUser.email,
             socialSecurityNumber: savedUser.socialSecurityNumber,
+            isFirstResponder: savedUser.isFirstResponder,
+          };
+
+          if (!savedUser.isFirstResponder) {
+            res.status(201).json(userData);
+            return;
+          }
+
+          const newFirstResponder = new FirstResponder({
+            user: savedUser._id,
+          });
+
+          return newFirstResponder.save().then(() => {
+            res.status(201).json(userData);
           });
         });
       });
@@ -54,11 +69,13 @@ router.post("/signin", function (req, res) {
       if (user && bcrypt.compareSync(req.body.password, user.password)) {
         res
           .status(200)
-          .json({ 
+          .json({
             result: true,
             token: user.token,
             email: user.email,
-            socialSecurityNumber: user.socialSecurityNumber, });
+            socialSecurityNumber: user.socialSecurityNumber,
+            isFirstResponder: user.isFirstResponder,
+          });
       } else {
         res
           .status(401)

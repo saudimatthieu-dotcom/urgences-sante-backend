@@ -1,0 +1,50 @@
+[
+  {
+    "user": { "$oid": "650000000000000000000001" },
+    "certifications": [{ "certName": "PSE2", "organisation": "Croix-Rouge française" }],
+    "isAvailable": true,
+    "location": { "latitude": 48.8869, "longitude": 2.3021 }
+  },
+  {
+    "user": { "$oid": "650000000000000000000002" },
+    "certifications": [{ "certName": "PSE1", "organisation": "Protection Civile" }],
+    "isAvailable": true,
+    "location": { "latitude": 48.8842, "longitude": 2.2986 }
+  },
+  {
+    "user": { "$oid": "650000000000000000000003" },
+    "certifications": [{ "certName": "PSE2", "organisation": "Croix-Rouge française" }],
+    "isAvailable": true,
+    "location": { "latitude": 48.8901, "longitude": 2.3105 }
+  },
+  {
+    "user": { "$oid": "650000000000000000000004" },
+    "certifications": [{ "certName": "PSC1", "organisation": "Sapeurs-pompiers de Paris" }],
+    "isAvailable": true,
+    "location": { "latitude": 48.8825, "longitude": 2.3078 }
+  },
+  {
+    "user": { "$oid": "650000000000000000000005" },
+    "certifications": [{ "certName": "PSE1", "organisation": "Protection Civile" }],
+    "isAvailable": true,
+    "location": { "latitude": 48.8917, "longitude": 2.2954 }
+  },
+  {
+    "user": { "$oid": "650000000000000000000006" },
+    "certifications": [{ "certName": "PSE2", "organisation": "Croix-Rouge française" }],
+    "isAvailable": true,
+    "location": { "latitude": 48.8794, "longitude": 2.3012 }
+  },
+  {
+    "user": { "$oid": "650000000000000000000007" },
+    "certifications": [{ "certName": "PSC1", "organisation": "Sapeurs-pompiers de Paris" }],
+    "isAvailable": true,
+    "location": { "latitude": 48.8883, "longitude": 2.3142 }
+  },
+  {
+    "user": { "$oid": "650000000000000000000008" },
+    "certifications": [{ "certName": "PSE1", "organisation": "Protection Civile" }],
+    "isAvailable": true,
+    "location": { "latitude": 48.8938, "longitude": 2.3049 }
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "user": { "$oid": "650000000000000000000010" },
+    "label": "Chirurgie cérébrale",
+    "practitioner": { "$oid": "650000000000000000000021" },
+    "occurredAt": { "$date": "2025-11-08T00:00:00.000Z" },
+    "notes": "Intervention programmée, suites simples."
+  },
+  {
+    "user": { "$oid": "650000000000000000000010" },
+    "label": "Greffe pulmonaire",
+    "practitioner": { "$oid": "650000000000000000000022" },
+    "occurredAt": { "$date": "2025-11-08T00:00:00.000Z" },
+    "notes": "Surveillance post-opératoire en réanimation."
+  },
+  {
+    "user": { "$oid": "650000000000000000000010" },
+    "label": "Transplantation cardiaque",
+    "practitioner": { "$oid": "650000000000000000000023" },
+    "occurredAt": { "$date": "2025-10-22T00:00:00.000Z" },
+    "notes": "Traitement immunosuppresseur au long cours."
+  },
+  {
+    "user": { "$oid": "650000000000000000000010" },
+    "label": "Appendicectomie",
+    "practitioner": { "$oid": "650000000000000000000024" },
+    "occurredAt": { "$date": "2025-11-22T00:00:00.000Z" },
+    "notes": "Coelioscopie, sortie à J2."
+  },
+  {
+    "user": { "$oid": "650000000000000000000010" },
+    "label": "Chirurgie cérébrale",
+    "practitioner": { "$oid": "650000000000000000000025" },
+    "occurredAt": { "$date": "2025-11-22T00:00:00.000Z" },
+    "notes": "Contrôle IRM à 3 mois."
+  },
+  {
+    "user": { "$oid": "650000000000000000000010" },
+    "label": "Pontage coronarien",
+    "practitioner": { "$oid": "650000000000000000000026" },
+    "occurredAt": { "$date": "2025-10-05T00:00:00.000Z" },
+    "notes": "Double pontage, rééducation cardiaque prescrite."
+  },
+  {
+    "user": { "$oid": "650000000000000000000010" },
+    "label": "Arthroscopie du genou",
+    "practitioner": { "$oid": "650000000000000000000027" },
+    "occurredAt": { "$date": "2025-09-27T00:00:00.000Z" },
+    "notes": "Méniscectomie partielle, kinésithérapie 6 semaines."
+  }
+]

@@ -19,7 +19,6 @@ const firstResponderSchema = mongoose.Schema({
   },
   certifications: [certificationSchema],
   isAvailable: { type: Boolean, default: false },
-  isPubliclyListed: { type: Boolean, default: false },
   location: locationSchema,
 });
 
