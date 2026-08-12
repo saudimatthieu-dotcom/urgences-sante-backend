@@ -30,12 +30,26 @@ router.post("/signup", function (req, res) {
         });
 
         return newUser.save().then((savedUser) => {
-          res.status(201).json({
+          const userData = {
             result: true,
             token: savedUser.token,
             email: savedUser.email,
             socialSecurityNumber: savedUser.socialSecurityNumber,
             isFirstResponder: savedUser.isFirstResponder,
+          };
+
+          if (!savedUser.isFirstResponder) {
+            res.status(201).json(userData);
+            return;
+          }
+
+          const newFirstResponder = new FirstResponder({
+            user: savedUser._id,
+            isPubliclyListed: true,
+          });
+
+          return newFirstResponder.save().then(() => {
+            res.status(201).json(userData);
           });
         });
       });
