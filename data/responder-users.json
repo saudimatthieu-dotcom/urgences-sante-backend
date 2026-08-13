@@ -6,6 +6,7 @@
     "email": "marie.dubois@secouriste.demo",
     "phone": "0639980112",
     "password": "$2b$10$tKYHfByWIhWISdllNN/CZu5m7hm/IT8GjLf8XM8mS0sm2yTLoXTrW",
+    "token": "gUqEHBpc56ARC7zdhDg51tsOE23q23lZ",
     "isFirstResponder": true
   },
   {
@@ -15,6 +16,7 @@
     "email": "karim.benali@secouriste.demo",
     "phone": "0639980237",
     "password": "$2b$10$tKYHfByWIhWISdllNN/CZu5m7hm/IT8GjLf8XM8mS0sm2yTLoXTrW",
+    "token": "WwIEDY_CxtAkeNk9Ksi1q_k_mLTLXbJY",
     "isFirstResponder": true
   },
   {
@@ -24,6 +26,7 @@
     "email": "sophie.nguyen@secouriste.demo",
     "phone": "0639980345",
     "password": "$2b$10$tKYHfByWIhWISdllNN/CZu5m7hm/IT8GjLf8XM8mS0sm2yTLoXTrW",
+    "token": "PdTN66lOMTZT64j4jnTQiQGahBCoFPcZ",
     "isFirstResponder": true
   },
   {
@@ -33,6 +36,7 @@
     "email": "thomas.leroy@secouriste.demo",
     "phone": "0639980458",
     "password": "$2b$10$tKYHfByWIhWISdllNN/CZu5m7hm/IT8GjLf8XM8mS0sm2yTLoXTrW",
+    "token": "8MOyfrB1FXdI5tJcXqWGmryaWwl3_IOU",
     "isFirstResponder": true
   },
   {
@@ -42,6 +46,7 @@
     "email": "amina.kaddour@secouriste.demo",
     "phone": "0639980561",
     "password": "$2b$10$tKYHfByWIhWISdllNN/CZu5m7hm/IT8GjLf8XM8mS0sm2yTLoXTrW",
+    "token": "ZbZRmoRYvwduE0neYnEIWP5VKVmbZJQw",
     "isFirstResponder": true
   },
   {
@@ -51,6 +56,7 @@
     "email": "lucas.martin@secouriste.demo",
     "phone": "0639980674",
     "password": "$2b$10$tKYHfByWIhWISdllNN/CZu5m7hm/IT8GjLf8XM8mS0sm2yTLoXTrW",
+    "token": "fcnTm7ozIN1l87HkOWtUU0zpCQnWz6-g",
     "isFirstResponder": true
   },
   {
@@ -60,6 +66,7 @@
     "email": "chloe.roux@secouriste.demo",
     "phone": "0639980783",
     "password": "$2b$10$tKYHfByWIhWISdllNN/CZu5m7hm/IT8GjLf8XM8mS0sm2yTLoXTrW",
+    "token": "ChIpSkec5Us5RyOqsJ2wXw4nQeShLR7R",
     "isFirstResponder": true
   },
   {
@@ -69,6 +76,7 @@
     "email": "yanis.traore@secouriste.demo",
     "phone": "0639980896",
     "password": "$2b$10$tKYHfByWIhWISdllNN/CZu5m7hm/IT8GjLf8XM8mS0sm2yTLoXTrW",
+    "token": "34XXRLmew4QSFRBQkopnq9g64coVT8Pl",
     "isFirstResponder": true
   }
 ]

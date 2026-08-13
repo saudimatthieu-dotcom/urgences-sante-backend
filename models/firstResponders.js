@@ -18,7 +18,7 @@ const firstResponderSchema = mongoose.Schema({
     required: true,
   },
   certifications: [certificationSchema],
-  isAvailable: { type: Boolean, default: false },
+  isAvailable: { type: Boolean, default: true },
   location: locationSchema,
 });
 

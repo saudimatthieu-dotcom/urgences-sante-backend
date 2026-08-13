@@ -117,6 +117,7 @@ router.get("/", (req, res) => {
           name: `${responder.user.firstname || ""} ${responder.user.lastname ? `${responder.user.lastname.charAt(0)}.` : ""}`.trim(),
           certification: responder.certifications[0]?.certName,
           phone: responder.user.phone,
+          photo: responder.user.photo,
           latitude: responder.location.latitude,
           longitude: responder.location.longitude,
         }));
