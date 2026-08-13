@@ -1,0 +1,58 @@
+[
+  {
+    "_id": { "$oid": "650000000000000000000021" },
+    "firstname": "Élodie",
+    "lastname": "Faure",
+    "speciality": "Neurochirurgie",
+    "phone": "0142980121",
+    "hospital": { "$oid": "650000000000000000000031" }
+  },
+  {
+    "_id": { "$oid": "650000000000000000000022" },
+    "firstname": "Nicolas",
+    "lastname": "Perret",
+    "speciality": "Pneumologie",
+    "phone": "0142980122",
+    "hospital": { "$oid": "650000000000000000000034" }
+  },
+  {
+    "_id": { "$oid": "650000000000000000000023" },
+    "firstname": "Isabelle",
+    "lastname": "Morel",
+    "speciality": "Chirurgie cardiaque",
+    "phone": "0142980123",
+    "hospital": { "$oid": "650000000000000000000035" }
+  },
+  {
+    "_id": { "$oid": "650000000000000000000024" },
+    "firstname": "Julien",
+    "lastname": "Girard",
+    "speciality": "Chirurgie viscérale",
+    "phone": "0142980124",
+    "hospital": { "$oid": "650000000000000000000030" }
+  },
+  {
+    "_id": { "$oid": "650000000000000000000025" },
+    "firstname": "Camille",
+    "lastname": "Bonnet",
+    "speciality": "Neurochirurgie",
+    "phone": "0142980125",
+    "hospital": { "$oid": "650000000000000000000031" }
+  },
+  {
+    "_id": { "$oid": "650000000000000000000026" },
+    "firstname": "Antoine",
+    "lastname": "Lefebvre",
+    "speciality": "Chirurgie cardiaque",
+    "phone": "0142980126",
+    "hospital": { "$oid": "650000000000000000000035" }
+  },
+  {
+    "_id": { "$oid": "650000000000000000000027" },
+    "firstname": "Sarah",
+    "lastname": "Costa",
+    "speciality": "Chirurgie orthopédique",
+    "phone": "0142980127",
+    "hospital": { "$oid": "650000000000000000000032" }
+  }
+]

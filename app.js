@@ -12,6 +12,7 @@ var alertsRouter = require("./routes/alerts");
 var firstRespondersRouter = require("./routes/firstResponders");
 var healthRecordsRouter = require("./routes/healthRecords");
 var hospitalsRouter = require("./routes/hospitals");
+var practitionersRouter = require("./routes/practitioners");
 
 var app = express();
 
@@ -27,5 +28,6 @@ app.use("/alerts", alertsRouter);
 app.use("/firstResponders", firstRespondersRouter);
 app.use("/healthRecords", healthRecordsRouter);
 app.use("/hospitals", hospitalsRouter);
+app.use("/practitioners", practitionersRouter);
 
 module.exports = app;

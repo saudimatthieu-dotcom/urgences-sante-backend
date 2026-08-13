@@ -1,0 +1,11 @@
+[
+  {
+    "_id": { "$oid": "650000000000000000000010" },
+    "firstname": "Julie",
+    "lastname": "Fontaine",
+    "email": "julie.fontaine@patient.demo",
+    "phone": "0639981010",
+    "password": "$2b$10$tKYHfByWIhWISdllNN/CZu5m7hm/IT8GjLf8XM8mS0sm2yTLoXTrW",
+    "isFirstResponder": false
+  }
+]
