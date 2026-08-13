@@ -166,5 +166,27 @@ router.post('/profile/upload', async (req, res) => {
   }
 });
 
+//delete profile photo
+router.delete('/profile/photo', (req, res) => {
+  if (!checkBody(req.body, ['token'])) {
+    res.json({ result: false, error: 'Missing or empty fields' });
+    return;
+  }
+  User.findOne({ token: req.body.token })
+    .then((user) => {
+      if (!user) {
+        res.json({ result: false, error: 'User not found' });
+        return;
+      }
+
+      return User.updateOne({ _id: user._id }, { $unset: { photo: '' } }).then(() => {
+        res.json({ result: true });
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({ result: false, error: error.message });
+    });
+});
+
 
 module.exports = router;
