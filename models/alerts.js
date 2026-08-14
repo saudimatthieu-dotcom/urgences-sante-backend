@@ -6,7 +6,6 @@ const locationSchema = mongoose.Schema({
 });
 
 const alertSchema = mongoose.Schema({
-  //  seul un utilisateur connecté peut créer une alerte(only connected user->alert)
   requester: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
@@ -17,6 +16,11 @@ const alertSchema = mongoose.Schema({
     type: String,
     enum: ["pending", "accepted", "onSite", "resolved", "cancelled"],
     default: "pending",
+  },
+  assignedTo: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "firstResponders",
+    default: null,
   },
   firstResponder: {
     type: mongoose.Schema.Types.ObjectId,

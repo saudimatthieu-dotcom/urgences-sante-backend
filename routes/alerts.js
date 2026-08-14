@@ -22,6 +22,7 @@ router.post('/', (req, res) => {
 
       const newAlert = new Alert({
         requester: user._id,
+        assignedTo: req.body.firstResponderId,
         location: {
           latitude: req.body.latitude,
           longitude: req.body.longitude,
@@ -47,7 +48,7 @@ router.get('/pending/:token', (req, res) => {
         return;
       }
 
-      Alert.find({ status: 'pending' })
+    Alert.find({ status: 'pending', assignedTo: responder._id })
         .populate('requester')
         .sort({ createdAt: -1 })
         .then((pendingAlerts) => {
