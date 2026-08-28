@@ -150,7 +150,7 @@ router.get("/profile/:token", (req, res) => {
 
 //Cloudinary route profile photo
 router.post('/profile/upload', async (req, res) => {
-  const photoPath = `./tmp/${uniqid()}.jpg`;
+  const photoPath = `/tmp/${uniqid()}.jpg`;
   const resultMove = await req.files.photoFromFront.mv(photoPath);
 
   if (!resultMove) {

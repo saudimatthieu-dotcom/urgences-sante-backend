@@ -40,3 +40,7 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+.vercel
+
+# local debug dumps
+data/responder-locatations.json
